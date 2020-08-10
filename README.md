@@ -1,0 +1,1 @@
+# dofus-touch-resource-fetcher

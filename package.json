@@ -4,7 +4,8 @@
   "description": "This is a puppeteer projecct to fecth dofus touch resources from official website with the Item format { name: string, itemId: number, imageId }",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,8 @@
   "homepage": "https://github.com/umutc/dofus-touch-resource-fetcher#readme",
   "devDependencies": {
     "mocha": "^8.1.1"
+  },
+  "dependencies": {
+    "puppeteer": "^5.2.1"
   }
 }

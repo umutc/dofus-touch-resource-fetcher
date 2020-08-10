@@ -1,0 +1,28 @@
+{
+  "name": "dofus-touch-resource-fetcher",
+  "version": "1.0.0",
+  "description": "This is a puppeteer projecct to fecth dofus touch resources from official website with the Item format { name: string, itemId: number, imageId }",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/umutc/dofus-touch-resource-fetcher.git"
+  },
+  "keywords": [
+    "dofus-touch",
+    "Dofus",
+    "Touch",
+    "resources"
+  ],
+  "author": "Umut ÇELİK",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/umutc/dofus-touch-resource-fetcher/issues"
+  },
+  "homepage": "https://github.com/umutc/dofus-touch-resource-fetcher#readme",
+  "devDependencies": {
+    "mocha": "^8.1.1"
+  }
+}

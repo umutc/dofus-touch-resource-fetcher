@@ -13,41 +13,43 @@ const cc = console;
 const pages = [
   {
     ID: "monsters",
-    url: "https://www.dofus-touch.com/en/mmorpg/encyclopedia/monsters",
+    url: "https://www.dofus-touch.com/en/mmorpg/encyclopedia/monsters?size=96",
   },
   {
     ID: "weapons",
-    url: "https://www.dofus-touch.com/en/mmorpg/encyclopedia/weapons",
+    url: "https://www.dofus-touch.com/en/mmorpg/encyclopedia/weapons?size=96",
   },
   {
     ID: "equipment",
-    url: "https://www.dofus-touch.com/en/mmorpg/encyclopedia/equipment",
+    url: "https://www.dofus-touch.com/en/mmorpg/encyclopedia/equipment?size=96",
   },
   {
     ID: "pets",
-    url: "https://www.dofus-touch.com/en/mmorpg/encyclopedia/pets",
+    url: "https://www.dofus-touch.com/en/mmorpg/encyclopedia/pets?size=96",
   },
-  {
-    ID: "mounts",
-    url: "https://www.dofus-touch.com/en/mmorpg/encyclopedia/mounts",
-  },
+  /* mounts are bugged because the image of the mount is not img. its fucking div :)) */
+  // {
+  //   ID: "mounts",
+  //   url: "https://www.dofus-touch.com/en/mmorpg/encyclopedia/mounts?size=96",
+  // },
   {
     ID: "consumables",
-    url: "https://www.dofus-touch.com/en/mmorpg/encyclopedia/consumables",
+    url: "https://www.dofus-touch.com/en/mmorpg/encyclopedia/consumables?size=96",
   },
   {
     ID: "resources",
-    url: "https://www.dofus-touch.com/en/mmorpg/encyclopedia/resources",
+    url: "https://www.dofus-touch.com/en/mmorpg/encyclopedia/resources?size=96",
   },
   {
     ID: "ceremonial-item",
-    url: "https://www.dofus-touch.com/en/mmorpg/encyclopedia/ceremonial-item",
+    url: "https://www.dofus-touch.com/en/mmorpg/encyclopedia/ceremonial-item?size=96",
   },
 ];
 const rowsSelector = "table tbody tr";
 const nextPageSelector = ".ak-pagination ul li>a";
 (async () => {
   const browser = await launch({
+    headless: true,
     args: [
       "--disable-dev-shm-usage",
       "--disable-gpu",
@@ -56,9 +58,15 @@ const nextPageSelector = ".ak-pagination ul li>a";
     ],
   });
   const page = await browser.newPage();
+  await page.setRequestInterception(true);
+  page.on('request', (request) => {
+    if (request.resourceType() !== 'document') request.abort();
+    else request.continue();
+  });
   for (const _page of pages) {
     let url = _page.url;
-    while (url) {
+    while (url !== 'javascript:void(0);') {
+      console.log(url);
       await page.goto(url);
       storeItems(await fetchTableItems(page), _page.ID);
       url = await nextPageUrl(page);

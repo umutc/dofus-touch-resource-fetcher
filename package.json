@@ -28,7 +28,8 @@
   "homepage": "https://github.com/umutc/dofus-touch-resource-fetcher#readme",
   "devDependencies": {
     "@types/puppeteer": "^3.0.1",
-    "mocha": "^8.1.1"
+    "mocha": "^8.1.1",
+    "typescript": "^3.9.7"
   },
   "dependencies": {
     "puppeteer": "^5.2.1"
